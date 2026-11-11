@@ -4,6 +4,6 @@ All notable changes are documented here. Format: [Keep a Changelog](https://keep
 
 ## [0.1.0] - 2026-11-11
 ### Added
-- Initial landing page for skAegis: hero, what it is, Defend/Detect/Remediate suite section, closed-loop explainer, feature grid, Watch/Guard/Fortress tier cards, FAQ, footer.
+- Initial landing page for skaegis: hero, what it is, Defend/Detect/Remediate suite section, closed-loop explainer, feature grid, Watch/Guard/Fortress tier cards, FAQ, footer.
 - `CNAME` for skaegis.skworld.io, `.nojekyll`, `robots.txt`, `sitemap.xml`, favicon.
-- Repo doc set: README, SOP, AGENTS, SECURITY, CONTRIBUTING, CODE_OF_CONDUCT, LICENSE (MIT).
+- Repo doc set: README, SOP, AGENTS, SECURITY, CONTRIBUTING, CODE_OF_CONDUCT, LICENSE (GPLv3).

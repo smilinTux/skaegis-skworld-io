@@ -1,6 +1,6 @@
 # Contributing to skaegis-skworld-io
 
-By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md). Contributions are licensed MIT.
+By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md). Contributions are licensed GPLv3.
 
 ## Workflow
 1. Branch from `main` (never commit to `main`): `git switch -c fix/<topic>`.

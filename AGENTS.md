@@ -1,6 +1,6 @@
 # AGENTS.md (skaegis-skworld-io)
 
-Static GitHub Pages site for skAegis at https://skaegis.skworld.io. Read [README.md](./README.md) for the overview and
+Static GitHub Pages site for skaegis at https://skaegis.skworld.io. Read [README.md](./README.md) for the overview and
 [SOP.md](./SOP.md) for operations. Standard: [AGENT_INSTRUCTIONS_STANDARD](https://github.com/smilinTux/sk-standards/blob/main/standards/AGENT_INSTRUCTIONS_STANDARD.md).
 
 ## Source of truth and invariants
@@ -39,7 +39,7 @@ python3 <path-to-sk-standards>/scripts/docs_check.py --repo .
 - **Attribution:** a `Co-Authored-By` trailer names the agent that actually did the work,
   or is left out.
 - **Generated files:** none.
-- Lead with "skAegis" as the product. The detection engine is named only in plain, factual FAQ context, never as the headline.
+- Lead with "skaegis" as the product. The detection engine is named only in plain, factual FAQ context, never as the headline.
 - No third-party scripts, trackers or fonts; keep the site self-contained.
 
 ## Privacy
