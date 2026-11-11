@@ -4,7 +4,7 @@ By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md). Contrib
 
 ## Workflow
 1. Branch from `main` (never commit to `main`): `git switch -c fix/<topic>`.
-2. Edit `index.html` or `styles.css`. Check at phone width and desktop width.
+2. Edit `index.html`. Check at phone width and desktop width.
 3. Run the checks in [SOP.md](./SOP.md) section 4, including the dash check and the docs gate.
 4. Add a `CHANGELOG.md` entry for user-visible changes.
 5. Open a pull request.

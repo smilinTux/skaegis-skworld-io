@@ -5,7 +5,7 @@ Static GitHub Pages site for skaegis at https://skaegis.skworld.io. Read [README
 
 ## Source of truth and invariants
 
-- `index.html` and `styles.css` are canonical. Nothing is generated.
+- `index.html` (inline CSS) is canonical. Nothing is generated.
 - `CNAME` contains exactly `skaegis.skworld.io`, no newline games, no other lines.
 - The page says the product is in design. Do not remove that while it is true.
 - No overclaims: never "unhackable", "100% secure", "quantum-proof" or similar.
@@ -26,7 +26,7 @@ python3 <path-to-sk-standards>/scripts/docs_check.py --repo .
 ## Start here
 
 1. `index.html`: the whole page.
-2. `styles.css`: theme tokens in `:root`.
+2. The inline `<style>` block in `index.html`: theme tokens in `:root`.
 3. `SOP.md`: deploy and troubleshooting.
 
 ## Rules

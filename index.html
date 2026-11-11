@@ -1,118 +1,310 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>skaegis | Continuous CVE detection for your whole fleet</title>
-<meta name="description" content="skaegis is self-hosted, continuous vulnerability detection for Linux, Windows and macOS. It ranks every CVE by exploitability and exposure and feeds the fix into your patch pipeline. Your infrastructure, no SaaS." />
-<meta name="color-scheme" content="dark" />
-<meta name="theme-color" content="#070b14" />
-<link rel="canonical" href="https://skaegis.skworld.io/" />
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<meta property="og:title" content="skaegis | Your continuous shield" />
-<meta property="og:description" content="Every CVE seen, every gap closed. Self-hosted detection for your whole fleet." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://skaegis.skworld.io/" />
-<link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>skaegis · Every CVE, Every Host, The Day It Lands 📡</title>
+  <meta name="description" content="skaegis watches every Linux, Windows and macOS host you run, matches new CVEs against what is actually installed the day they land, ranks them by exploitability and exposure, and hands the fix to your patch pipeline. Self-hosted, no SaaS.">
+  <link rel="canonical" href="https://skaegis.skworld.io/">
+  <meta name="theme-color" content="#0a0b18">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="skaegis · SKWorld">
+  <meta property="og:title" content="skaegis · Every CVE, Every Host, The Day It Lands">
+  <meta property="og:description" content="Continuous CVE detection across Linux, Windows and macOS, ranked by exploitability and exposure, closed through your patch pipeline. Part of the SKWorld sovereign AI ecosystem.">
+  <meta property="og:url" content="https://skaegis.skworld.io/">
+  <meta property="og:image" content="https://skaegis.skworld.io/og.png">
+  <meta property="og:image:secure_url" content="https://skaegis.skworld.io/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="skaegis: continuous CVE detection for every host, closed-loop">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@smilinTux">
+  <meta name="twitter:creator" content="@smilinTux">
+  <meta name="twitter:title" content="skaegis · Every CVE, Every Host, The Day It Lands">
+  <meta name="twitter:description" content="Continuous CVE detection across Linux, Windows and macOS, ranked by exploitability and exposure, closed through your patch pipeline.">
+  <meta name="twitter:image" content="https://skaegis.skworld.io/og.png">
+  <meta name="twitter:image:alt" content="skaegis: continuous CVE detection for every host, closed-loop">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://skworld.io/#org",
+        "name": "smilinTux",
+        "url": "https://skworld.io",
+        "sameAs": ["https://github.com/smilinTux"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://skaegis.skworld.io/#website",
+        "url": "https://skaegis.skworld.io/",
+        "name": "skaegis",
+        "description": "Continuous CVE detection for every host, ranked by exploitability and exposure, closed through your patch pipeline.",
+        "publisher": {"@id": "https://skworld.io/#org"}
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://skaegis.skworld.io/#app",
+        "name": "skaegis",
+        "description": "Self-hosted continuous vulnerability detection for Linux, Windows and macOS hosts. Matches new CVEs against installed software as they are published, ranks findings by exploitability and exposure, and feeds fixes into a patch pipeline. Runs on unmodified upstream Wazuh. In design and early build.",
+        "url": "https://skaegis.skworld.io/",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Linux, Windows, macOS",
+        "codeRepository": "https://github.com/smilinTux/skaegis",
+        "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+        "isPartOf": {"@id": "https://skworld.io/#org"},
+        "publisher": {"@id": "https://skworld.io/#org"}
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{--iris:#7c8cff;--cyan:#38bdf8;--ink:#eef1f3;--muted:rgba(238,241,243,.72);--panel:rgba(124,140,255,.07);--line:rgba(124,140,255,.30)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:radial-gradient(ellipse at top,#0f1024 0%,#0a0b18 60%);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:1000px;margin:0 auto;padding:0 1.4rem}
+    .mono{font-family:'JetBrains Mono',monospace}
+    .eyebrow{color:var(--iris);letter-spacing:.18em;font-size:.8rem;text-transform:uppercase}
+    a{color:var(--cyan);text-decoration:none}
+    a:hover{color:#fff}
+    nav{border-bottom:1px solid rgba(124,140,255,.15);padding:1rem 0;position:sticky;top:0;background:#0a0b18;z-index:10}
+    nav .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+    .nav-logo{font-family:'JetBrains Mono',monospace;font-weight:700;color:#fff;font-size:1rem;letter-spacing:.02em}
+    .nav-logo span{color:var(--iris)}
+    .nav-links{display:flex;gap:1.1rem;flex-wrap:wrap;font-size:.85rem}
+    .nav-links a{color:var(--muted)}
+    .nav-links a:hover{color:var(--iris)}
+    header{text-align:center;padding:4.5rem 0 3rem}
+    .icon{font-size:4rem;line-height:1}
+    h1{font-size:3.2rem;font-weight:800;letter-spacing:.03em;margin:.6rem 0 .2rem;background:linear-gradient(90deg,#fff,var(--iris));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .tag{font-size:1.3rem;color:var(--iris);font-weight:600;margin-top:.4rem}
+    .sub{color:var(--muted);font-size:1.1rem;max-width:680px;margin:1rem auto 0}
+    .badges{margin:1.8rem 0 0;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+    .badge{border:1px solid var(--line);border-radius:999px;padding:.5rem 1.05rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--iris);background:var(--panel);transition:all .25s}
+    .badge:hover{border-color:var(--iris);color:#fff}
+    section{padding:2.6rem 0;border-top:1px solid rgba(255,255,255,.06)}
+    h2{font-size:1.7rem;color:#fff;margin-bottom:1rem;font-weight:700}
+    h2 .n{color:var(--iris);font-family:'JetBrains Mono',monospace;font-size:1.1rem;margin-right:.5rem}
+    h3.sub-h{color:var(--iris);font-size:1.15rem;margin:1.6rem 0 .6rem;font-weight:700}
+    p{color:var(--muted);margin-bottom:.9rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1rem}
+    .card{border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.2rem;background:rgba(255,255,255,.02)}
+    .card h3{color:var(--iris);font-size:1.05rem;margin-bottom:.4rem}
+    .card p{font-size:.95rem;margin:0}
+    ol.arts{list-style:none;counter-reset:a;margin-top:.6rem}
+    ol.arts li{counter-increment:a;border-left:2px solid var(--line);padding:.2rem 0 1rem 1.2rem;position:relative}
+    ol.arts li::before{content:counter(a);position:absolute;left:-.85rem;top:0;background:var(--iris);color:#0a0b18;width:1.5rem;height:1.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:.8rem}
+    ol.arts strong{color:#fff}
+    .flow{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--cyan);background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.2);border-radius:12px;padding:1rem 1.2rem;overflow-x:auto;white-space:pre;margin-top:.6rem}
+    table.spec{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.92rem}
+    table.spec th,table.spec td{padding:.6rem .8rem;text-align:left;border-bottom:1px solid rgba(255,255,255,.08)}
+    table.spec th{color:var(--iris);font-family:'JetBrains Mono',monospace;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+    table.spec td{color:var(--muted)}
+    table.spec td strong{color:#fff}
+    .cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
+    .btn{border:1px solid var(--line);border-radius:10px;padding:.7rem 1.3rem;font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--iris);background:var(--panel);transition:all .25s}
+    .btn:hover{border-color:var(--iris);color:#fff}
+    .btn.bl{border-color:rgba(56,189,248,.35);color:var(--cyan)}
+    .btn.bl:hover{border-color:var(--cyan);color:#fff}
+    .callout{border:1px solid rgba(124,140,255,.45);background:linear-gradient(135deg,rgba(124,140,255,.1),rgba(56,189,248,.05));border-radius:16px;padding:1.6rem 1.8rem;margin-top:1.2rem}
+    .callout h3{color:#fff;font-size:1.15rem;margin-bottom:.6rem}
+    .callout h3 .tag-pill{display:inline-block;background:var(--iris);color:#0a0b18;font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:.2rem .55rem;border-radius:999px;margin-right:.5rem;vertical-align:middle;letter-spacing:.04em}
+    .callout ul{margin:.6rem 0 0 1.1rem;color:var(--muted)}
+    .callout li{margin-bottom:.5rem}
+    .callout code{color:var(--cyan)}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem;margin-top:1rem}
+    .shot{border:1px solid rgba(255,255,255,.1);border-radius:12px;overflow:hidden;background:#07081a}
+    .shot img{width:100%;display:block}
+    .shot figcaption{padding:.65rem .85rem;font-size:.82rem;color:var(--muted);border-top:1px solid rgba(255,255,255,.07)}
+    .shot figcaption a{color:var(--iris)}
+    .pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:.22rem .65rem;margin-left:.5rem;vertical-align:middle}
+    .pill.live{color:var(--iris);background:var(--panel);border:1px solid var(--line)}
+    .pill.weekly{color:var(--cyan);background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.3)}
+    footer{text-align:center;padding:3rem 0 2.5rem;color:rgba(255,255,255,.4);border-top:1px solid rgba(255,255,255,.06);margin-top:1rem}
+    footer .mono{font-size:.82rem}
+    .foot-links{display:flex;gap:1.4rem;flex-wrap:wrap;justify-content:center;margin:1.2rem 0;font-size:.85rem}
+    .foot-links a{color:var(--muted)}
+    .foot-links a:hover{color:var(--iris)}
+    code{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:.9em}
+    .tier-name{color:var(--iris)}
+    @media(max-width:600px){h1{font-size:2.3rem}.icon{font-size:3rem}.nav-links{font-size:.76rem;gap:.7rem}}
+  </style>
 </head>
 <body>
-<header class="nav"><div class="wrap">
-  <a class="brand" href="#top"><img src="assets/favicon.svg" alt="" />skaegis</a>
   <nav>
-    <a href="#what">What it is</a><a href="#suite">Suite</a><a href="#loop">How it works</a><a href="#features">Features</a><a href="#tiers">Tiers</a><a href="#faq">FAQ</a>
-    <a class="keep" href="#tiers">Get started</a>
+    <div class="wrap">
+      <a class="nav-logo" href="/">sk<span>aegis</span></a>
+      <div class="nav-links">
+        <a href="#why">Why now</a>
+        <a href="#how">How it works</a>
+        <a href="#detects">What it detects</a>
+        <a href="#suite">Suite</a>
+        <a href="#tiers">Tiers</a>
+        <a href="https://github.com/smilinTux/skaegis" target="_blank" rel="noopener">Source</a>
+        <a href="https://skworld.io" target="_blank" rel="noopener">🐧 SKWorld</a>
+      </div>
+    </div>
   </nav>
-</div></header>
 
-<main id="top">
-<div class="hero"><div class="wrap">
-  <div class="eyebrow">Detect &middot; part of the SKWorld security suite</div>
-  <h1>Your continuous shield. <em>Every CVE seen, every gap closed.</em></h1>
-  <p class="lead">skaegis watches every machine you run, Linux servers, Windows laptops and Macs. The moment a new CVE is published against something you have installed, it tells you, ranks it by how exploitable and how exposed it is, and hands the fix to your patch pipeline. On your own infrastructure.</p>
-  <div class="cta"><a class="btn" href="#tiers">See the tiers</a><a class="btn ghost" href="#loop">How the loop works</a></div>
-  <p class="status">Status: in design and early build. Tiers and scope below describe the plan, not a shipped release.</p>
-</div></div>
+  <header>
+    <div class="wrap">
+      <div class="icon">📡</div>
+      <div class="mono eyebrow">skaegis · detect</div>
+      <h1>skaegis</h1>
+      <div class="tag">Your continuous shield. Every CVE seen, every gap closed.</div>
+      <p class="sub">skaegis watches every machine you run, Linux servers, Windows laptops and Macs. The moment a new CVE is published against something you have installed, it tells you, ranks it by how exploitable and how exposed it is, and hands the fix to your patch pipeline. On your own infrastructure.</p>
+      <div class="badges">
+        <a class="badge" href="#why">⚡ Why now</a>
+        <a class="badge" href="#how">🔁 The loop</a>
+        <a class="badge" href="#tiers">🎚️ Tiers</a>
+        <a class="badge" href="https://github.com/smilinTux/skaegis" target="_blank" rel="noopener">💻 Code</a>
+      </div>
+    </div>
+  </header>
 
-<section id="what"><div class="wrap">
-  <h2>What it is</h2>
-  <p class="sub">Continuous vulnerability intelligence for your whole fleet, from one self-hosted service. Detection to remediation as a closed loop, with no SaaS in the middle and no inventory leaving your network.</p>
-  <div class="grid">
-    <div class="card"><h3>Whole-fleet visibility</h3><p>One detection fabric across Linux, Windows and macOS, so a CVE on a laptop is not a blind spot next to the server rack.</p></div>
-    <div class="card"><h3>Continuous, not scheduled</h3><p>New advisories are matched against what is actually installed on each host as they land, instead of waiting for the next quarterly scan.</p></div>
-    <div class="card"><h3>Ranked, not just listed</h3><p>Findings are ordered by exploitability and exposure, so the short list at the top is the one worth your morning.</p></div>
-    <div class="card"><h3>Yours to host</h3><p>Runs on your infrastructure behind your own single sign-on. Findings and host inventory stay inside your walls.</p></div>
+  <div class="wrap">
+    <section id="what">
+      <h2>What skaegis is</h2>
+      <p>Continuous vulnerability intelligence for your whole fleet, from one self-hosted service. Detection through to remediation as a closed loop, with no SaaS in the middle and no inventory leaving your network. skaegis is the Detect pillar of the SKWorld security suite.</p>
+      <div class="badges" style="justify-content:flex-start;margin:1.2rem 0 1rem">
+        <span class="badge">Linux · Windows · macOS</span>
+        <span class="badge">CVE detection</span>
+        <span class="badge">closed-loop</span>
+        <span class="badge">self-hosted</span>
+        <span class="badge">no SaaS</span>
+      </div>
+      <p class="mono" style="font-size:.85rem">Status: in design and early build. Tiers and scope below describe the plan, not a shipped release.</p>
+    </section>
+
+    <section id="why">
+      <h2><span class="n">§</span>Why now</h2>
+      <p>New CVEs land on already-deployed hosts every day. The software on your laptops and servers did not change, but what is known about it did. A quarterly scan is stale the week after it runs, and a scanner that only covers the Linux rack leaves every laptop as a blind spot.</p>
+      <p>So detection has to be continuous, and it has to be cross-OS: new advisories matched against what is actually installed on each host as they land, on every platform you run, with the short list ranked so the top of it is the one worth your morning.</p>
+      <p>What skaegis does not claim: it does not find unknown flaws, a host without an agent is not covered, and it reduces exposure rather than making a system impossible to breach.</p>
+    </section>
+
+    <section id="how">
+      <h2><span class="n">§</span>How it works: the loop</h2>
+      <p>A finding is not done when it is reported. It is done when a re-scan shows it gone.</p>
+      <div class="flow">1. Detect
+   agents inventory installed software on every host
+   public CVE feeds (NVD, GHSA, OSV, vendor) matched continuously
+   -> finding: CVE, host, package, severity, fix-available
+
+2. Triage
+   rank by exploitability x exposure, using a model run locally
+   -> critical and reachable: same-day lane, the rest: batched
+
+3. Remediate
+   package updates for hosts, pull requests for dependencies and images
+   -> handed to your patch pipeline, a human or the change gate approves
+
+4. Verify
+   next inventory scan: is the CVE gone and are services healthy?
+   no -> back to Detect
+
+5. Confirm
+   CVE absent -> the change is closed</div>
+      <ol class="arts" style="margin-top:1.4rem">
+        <li><strong>Detect.</strong> Agents report installed software on every host. New CVE data is matched against it continuously, with severity and whether a fix exists.</li>
+        <li><strong>Triage.</strong> Findings are ranked by exploitability and exposure. The model doing the ranking runs locally, so context stays in-house.</li>
+        <li><strong>Remediate.</strong> The fix goes into your patch pipeline. skaegis drafts, it never auto-merges.</li>
+        <li><strong>Verify.</strong> skaegis re-scans. When the CVE no longer appears, the finding closes. If it does, it stays open.</li>
+        <li><strong>Confirm.</strong> The change is closed on evidence. A finding with no fix yet stays open and marked, never silently dropped.</li>
+      </ol>
+      <p class="mono" style="font-size:.85rem;margin-top:.4rem">Honest limit: there is a lag between a patch landing and a clean re-scan, and Windows and macOS auto-apply is a later phase.</p>
+    </section>
+
+    <section id="detects">
+      <h2><span class="n">§</span>What it detects</h2>
+      <div class="grid">
+        <div class="card"><h3>Per-host CVEs</h3><p>Installed packages matched against public vulnerability sources, on Linux, Windows and macOS, host by host.</p></div>
+        <div class="card"><h3>Fix available, with severity</h3><p>Every finding carries severity and whether a fixed version exists, so triage starts with what can actually be closed today.</p></div>
+        <div class="card"><h3>CIS and SCA posture</h3><p>Configuration checks against hardening benchmarks, to catch misconfiguration as well as vulnerable software.</p></div>
+        <div class="card"><h3>File integrity monitoring</h3><p>Watch the paths that matter and see when they change.</p></div>
+        <div class="card"><h3>One dashboard</h3><p>The fleet's open findings in one place, behind your own single sign-on.</p></div>
+        <div class="card"><h3>Pipeline hand-off</h3><p>Findings flow into your existing patch, ticketing and notification tools instead of a separate inbox.</p></div>
+      </div>
+      <p style="margin-top:1.2rem">Under the hood the detection engine is unmodified upstream Wazuh, run from pinned images and packaged with SSO, ingress and backups as one product.</p>
+    </section>
+
+    <section id="suite">
+      <h2><span class="n">§</span>The security suite: Defend, Detect, Remediate</h2>
+      <p>Three products, one closed loop. sksec reduces what can reach you, skaegis finds what is weak on your side, skpatch fixes it and proves the fix landed. skaegis stands alone, and gets stronger with the other two.</p>
+      <div class="flow">Defend      Detect       Remediate
+sksec   ->  skaegis  ->  skpatch
+edge and    every CVE,   pin, patch,
+network     every host   verify
+   ^                          |
+   +--------- re-scan --------+</div>
+      <div class="grid" style="margin-top:1.4rem">
+        <div class="card"><h3>🛡️ Defend: sksec</h3><p>Runtime defense at the edge and on the network: intrusion prevention and blocking of hostile traffic. <a href="https://sksec.skworld.io" target="_blank" rel="noopener">sksec.skworld.io</a></p></div>
+        <div class="card"><h3>📡 Detect: skaegis (you are here)</h3><p>Vulnerability detection and CVE intelligence across every host, ranked by exploitability and exposure.</p></div>
+        <div class="card"><h3>🩹 Remediate: skpatch</h3><p>Patching and remediation: turns a finding into an applied fix and verifies it landed. <a href="https://skpatch.skworld.io" target="_blank" rel="noopener">skpatch.skworld.io</a></p></div>
+      </div>
+    </section>
+
+    <section id="tiers">
+      <h2><span class="n">§</span>Tiers</h2>
+      <p>Start by watching. Add closed-loop fixes when you trust the findings. Add active defense and compliance when you need them. Each tier includes the one before it.</p>
+      <table class="spec">
+        <tr><th>Tier</th><th>Adds</th></tr>
+        <tr><td><strong>Watch</strong></td><td>Continuous CVE detection on Linux, Windows and macOS, ranking by exploitability and exposure, configuration posture checks, file integrity monitoring, dashboard behind your SSO.</td></tr>
+        <tr><td><strong>Guard</strong></td><td>Everything in Watch, plus closed-loop remediation: automatic fix pull requests for dependencies and images, host patch hand-off to skpatch, re-scan verification before a finding closes, alerts into your chat and ticketing.</td></tr>
+        <tr><td><strong>Fortress</strong></td><td>Everything in Guard, plus runtime threat detection, active response rules, CIS and compliance reporting, and audit export.</td></tr>
+      </table>
+      <p style="margin-top:1rem" class="mono" style="font-size:.85rem">Availability is not final. Tier contents describe the current plan and may change before release.</p>
+    </section>
+
+    <section id="faq">
+      <h2>Straight answers</h2>
+      <div class="grid">
+        <div class="card"><h3>Does data leave my network?</h3><p>No. Host inventory, findings and triage stay on your infrastructure. It pulls public vulnerability feeds in and sends nothing of yours out.</p></div>
+        <div class="card"><h3>Does it find everything?</h3><p>No tool does. It detects known, published CVEs on software it can see on enrolled hosts. Unknown flaws and hosts without an agent are out of scope.</p></div>
+        <div class="card"><h3>Does it fix things on its own?</h3><p>Only at Guard and above, and through your own patch pipeline, so your review and change process still applies.</p></div>
+        <div class="card"><h3>Can I use it today?</h3><p>Not yet. It is in design and early build. Watch the repository for updates.</p></div>
+      </div>
+      <div class="cta">
+        <a class="btn" href="https://github.com/smilinTux/skaegis" target="_blank" rel="noopener">skaegis on GitHub</a>
+        <a class="btn bl" href="https://sksec.skworld.io" target="_blank" rel="noopener">🛡️ Meet sksec</a>
+        <a class="btn bl" href="https://skpatch.skworld.io" target="_blank" rel="noopener">🩹 Meet skpatch</a>
+      </div>
+    </section>
+
+    <section id="family">
+      <h2>Part of the ecosystem</h2>
+      <p>skaegis sees the gap. <a href="https://sksec.skworld.io" target="_blank" rel="noopener">sksec</a> keeps hostile traffic out, and <a href="https://skpatch.skworld.io" target="_blank" rel="noopener">skpatch</a> closes what skaegis finds. All part of <a href="https://skworld.io" target="_blank" rel="noopener">SKWorld</a>, the sovereign AI ecosystem where you own the whole stack, from silicon to soul.</p>
+      <div class="cta">
+        <a class="btn bl" href="https://skworld.io" target="_blank" rel="noopener">🐧 Explore SKWorld</a>
+        <a class="btn bl" href="https://sksec.skworld.io" target="_blank" rel="noopener">🛡️ Meet sksec</a>
+        <a class="btn bl" href="https://skpatch.skworld.io" target="_blank" rel="noopener">🩹 Meet skpatch</a>
+      </div>
+    </section>
   </div>
-</div></section>
 
-<section id="suite" class="suite"><div class="wrap">
-  <h2>Defend. Detect. Remediate.</h2>
-  <p class="sub">Three products, one story. skaegis is the Detect pillar: it sees the gap. The other two keep attackers out and close the gap once it is seen.</p>
-  <div class="grid">
-    <div class="card"><div class="tag">Defend</div><h3>sksec</h3><p>Runtime defense at the edge and on the network: intrusion prevention and blocking of hostile traffic.</p></div>
-    <div class="card me"><div class="tag">Detect &middot; you are here</div><h3>skaegis</h3><p>Vulnerability detection and CVE intelligence across every host, ranked by exploitability and exposure.</p></div>
-    <div class="card"><div class="tag">Remediate</div><h3>skpatch</h3><p>Patching and remediation: turns a finding into an applied fix and verifies it landed.</p></div>
-  </div>
-  <p class="note">The three share one loop. sksec reduces what can reach you, skaegis finds what is weak on your side, skpatch fixes it. You can adopt skaegis on its own.</p>
-</div></section>
-
-<section id="loop"><div class="wrap">
-  <h2>The closed loop</h2>
-  <p class="sub">A finding is not done when it is reported. It is done when a re-scan shows it gone.</p>
-  <div class="steps">
-    <div class="step"><h3>Detect</h3><p>Agents report installed software on every host. New CVE data is matched against it continuously.</p></div>
-    <div class="step"><h3>Triage</h3><p>Findings are ranked by exploitability and exposure, using a model that runs locally, so context stays in-house.</p></div>
-    <div class="step"><h3>Remediate</h3><p>The fix goes into your patch pipeline: package updates for hosts, pull requests for dependencies and images.</p></div>
-    <div class="step"><h3>Verify</h3><p>skaegis re-scans. When the CVE no longer appears, the change is closed. If it does, it stays open.</p></div>
-  </div>
-</div></section>
-
-<section id="features"><div class="wrap">
-  <h2>What you get</h2>
-  <p class="sub">Built on a mature open-source security platform that we run and support as a single product.</p>
-  <div class="grid">
-    <div class="card"><h3>CVE detection per host</h3><p>Matches installed packages against public vulnerability sources, with severity and whether a fix is available.</p></div>
-    <div class="card"><h3>Configuration checks</h3><p>Posture checks against hardening benchmarks, to catch misconfiguration as well as vulnerable software.</p></div>
-    <div class="card"><h3>File integrity monitoring</h3><p>Watch the paths that matter and see when they change.</p></div>
-    <div class="card"><h3>Dashboard with SSO</h3><p>A web dashboard behind your own identity provider, with the fleet's open findings in one place.</p></div>
-    <div class="card"><h3>Pipeline hand-off</h3><p>Findings flow into your existing patch, ticketing and notification tools instead of a separate inbox.</p></div>
-    <div class="card"><h3>Cross-OS agents</h3><p>Agents for Linux, Windows and macOS, rolled out with the tooling you already use.</p></div>
-  </div>
-</div></section>
-
-<section id="tiers"><div class="wrap">
-  <h2>Three tiers</h2>
-  <p class="sub">Start by watching. Add closed-loop fixes when you trust the findings. Add active defense and compliance when you need them. Each tier includes the one before it.</p>
-  <div class="tiers">
-    <div class="tier"><h3>Watch</h3><div class="for">Detection and a dashboard</div>
-      <ul><li>Continuous CVE detection, Linux, Windows, macOS</li><li>Ranking by exploitability and exposure</li><li>Configuration posture checks</li><li>File integrity monitoring</li><li>Dashboard behind your SSO</li></ul>
-      <a class="btn ghost" href="#faq">Ask about Watch</a></div>
-    <div class="tier feat"><h3>Guard</h3><div class="for">Watch, plus closed-loop remediation</div>
-      <ul><li class="inc">Everything in Watch</li><li>Automatic fix pull requests for dependencies and images</li><li>Host patch hand-off to skpatch</li><li>Re-scan verification before a finding closes</li><li>Alerts into your chat and ticketing</li></ul>
-      <a class="btn" href="#faq">Ask about Guard</a></div>
-    <div class="tier"><h3>Fortress</h3><div class="for">Guard, plus runtime defense and compliance</div>
-      <ul><li class="inc">Everything in Guard</li><li>Runtime threat detection</li><li>Active response rules</li><li>CIS and compliance reporting</li><li>Audit export</li></ul>
-      <a class="btn ghost" href="#faq">Ask about Fortress</a></div>
-  </div>
-  <p class="note">Pricing and availability are not final. Tier contents describe the current plan and may change before release.</p>
-</div></section>
-
-<section id="faq"><div class="wrap">
-  <h2>FAQ</h2><p class="sub"></p>
-  <details><summary>Does any data leave my network?</summary><p>No. skaegis is self-hosted. Host inventory, findings and triage stay on your infrastructure. It pulls public vulnerability feeds in, and sends nothing of yours out.</p></details>
-  <details><summary>Which operating systems are covered?</summary><p>Linux, Windows and macOS, using a lightweight agent on each host.</p></details>
-  <details><summary>Will it fix things automatically?</summary><p>Only at the Guard tier and above, and through your own patch pipeline, so your review and change process still applies. Watch only detects and reports.</p></details>
-  <details><summary>Does it find every vulnerability?</summary><p>No tool does. It detects known, published CVEs against software it can see on enrolled hosts. It does not find unknown flaws, and a host without an agent is not covered. It reduces exposure, it does not make a system impossible to breach.</p></details>
-  <details><summary>Is it built on open source?</summary><p>Yes. The detection engine is an established open-source platform, run unmodified from pinned images and packaged with SSO, ingress and backups as one product.</p></details>
-  <details><summary>Do I need sksec and skpatch too?</summary><p>No. skaegis stands alone. Together the three cover defend, detect and remediate.</p></details>
-  <details><summary>When can I use it?</summary><p>It is in design and early build. Watch this site and the <a href="https://github.com/smilinTux/skaegis-skworld-io">repository</a> for updates.</p></details>
-</div></section>
-</main>
-
-<footer><div class="wrap">
-  <div><strong>skaegis</strong><br />Your continuous shield.<br />Part of <a href="https://skworld.io">SKWorld</a>.</div>
-  <div>Suite<br /><a href="#suite">Defend (sksec)</a><br /><a href="#suite">Detect (skaegis)</a><br /><a href="#suite">Remediate (skpatch)</a></div>
-  <div>Project<br /><a href="https://github.com/smilinTux/skaegis-skworld-io">Site source</a><br /><a href="https://github.com/smilinTux/skaegis-skworld-io/blob/main/SECURITY.md">Security policy</a></div>
-  <div>&copy; 2026 SKWorld. GPLv3 licensed site.</div>
-</div></footer>
+  <footer>
+    <div class="wrap">
+      <div class="tag" style="font-size:1.05rem">Every CVE seen, every gap closed.</div>
+      <div class="foot-links">
+        <a href="https://skworld.io" target="_blank" rel="noopener">SKWorld</a>
+        <a href="https://sksec.skworld.io" target="_blank" rel="noopener">sksec</a>
+        <a href="https://skpatch.skworld.io" target="_blank" rel="noopener">skpatch</a>
+        <a href="https://github.com/smilinTux/skaegis" target="_blank" rel="noopener">Source</a>
+      </div>
+      <p class="mono" style="margin-top:.6rem">part of the SKWorld sovereign AI ecosystem 🐧 · built by <a href="https://github.com/smilinTux" target="_blank" rel="noopener">smilinTux</a> · <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener">GPLv3</a></p>
+    </div>
+  </footer>
 </body>
 </html>

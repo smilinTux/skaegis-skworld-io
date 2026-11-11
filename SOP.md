@@ -16,7 +16,7 @@ No server, no forms, no analytics, no third-party scripts. The only network fetc
 
 **Start here:**
 - `index.html`: the whole landing page (hero, suite, loop, features, tiers, FAQ).
-- `styles.css`: all styling, dark theme, CSS variables at the top.
+- Styling is inline in `index.html` (SKWorld house style, CSS variables at the top of the `<style>` block).
 - `CNAME`: must contain exactly `skaegis.skworld.io`.
 
 ## 3. Build
@@ -43,7 +43,7 @@ None. Static files only.
 |---|---|
 | Custom domain reverts to github.io | `CNAME` file present and exact; domain set in Pages settings |
 | HTTPS cert pending | DNS CNAME resolves to the Pages host; wait, then enable Enforce HTTPS |
-| Styles missing | Paths are relative (`styles.css`); `.nojekyll` present |
+| Styles missing | Styling is inline in `index.html`; `.nojekyll` present |
 
 ## 9. Maturity-tier + Version reference
 T0 (no cryptographic surface) · Incubating v3 · SemVer `0.x` · CRYPTOGRAPHY_STANDARD: not a crypto component, no key material handled.
@@ -56,7 +56,7 @@ checks:
   - name: landing page present
     run: test -f index.html && grep -q 'continuous shield' index.html
   - name: no em or en dashes in site and docs
-    run: test -z "$(grep -lP '[\x{2013}\x{2014}]' index.html styles.css *.md)"
+    run: test -z "$(grep -lP '[\x{2013}\x{2014}]' index.html *.md)"
   - name: no overclaim words in the page
     run: test -z "$(grep -iE 'unhackable|quantum-proof|100% secure|unbreakable' index.html)"
 -->
