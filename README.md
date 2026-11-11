@@ -1,6 +1,6 @@
 # skaegis-skworld-io
 
-**The GitHub Pages site for skAegis, served at https://skaegis.skworld.io.** skAegis is the Detect pillar of the SKWorld security suite (Defend sksec, Detect skAegis, Remediate skpatch): self-hosted, continuous CVE detection across Linux, Windows and macOS.
+**The GitHub Pages site for skaegis, served at https://skaegis.skworld.io.** skaegis is the Detect pillar of the SKWorld security suite (Defend sksec, Detect skaegis, Remediate skpatch): self-hosted, continuous CVE detection across Linux, Windows and macOS.
 **Maturity tier:** T0 (static marketing site, no cryptographic surface; see [CRYPTOGRAPHY_STANDARD](https://github.com/smilinTux/sk-standards/blob/main/standards/CRYPTOGRAPHY_STANDARD.md)) · **Version phase:** Incubating v3 (product is in design; this site describes the plan).
 
 This repo is the website only. It contains no product code.
@@ -13,7 +13,7 @@ git push origin main          # GitHub Pages publishes from the repo root
 ```
 
 ## Honest claims (read this)
-- skAegis detects **known, published CVEs** on hosts that run an enrolled agent. It does not find unknown flaws and does not cover unenrolled hosts.
+- skaegis detects **known, published CVEs** on hosts that run an enrolled agent. It does not find unknown flaws and does not cover unenrolled hosts.
 - The site never claims a system is unhackable, 100% secure or quantum-anything. It says what the product does and labels the product as in design.
 - Tier contents and pricing are plans, not commitments. The site says so next to the tier cards.
 

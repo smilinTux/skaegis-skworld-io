@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>skAegis | Continuous CVE detection for your whole fleet</title>
-<meta name="description" content="skAegis is self-hosted, continuous vulnerability detection for Linux, Windows and macOS. It ranks every CVE by exploitability and exposure and feeds the fix into your patch pipeline. Your infrastructure, no SaaS." />
+<title>skaegis | Continuous CVE detection for your whole fleet</title>
+<meta name="description" content="skaegis is self-hosted, continuous vulnerability detection for Linux, Windows and macOS. It ranks every CVE by exploitability and exposure and feeds the fix into your patch pipeline. Your infrastructure, no SaaS." />
 <meta name="color-scheme" content="dark" />
 <meta name="theme-color" content="#070b14" />
 <link rel="canonical" href="https://skaegis.skworld.io/" />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<meta property="og:title" content="skAegis | Your continuous shield" />
+<meta property="og:title" content="skaegis | Your continuous shield" />
 <meta property="og:description" content="Every CVE seen, every gap closed. Self-hosted detection for your whole fleet." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://skaegis.skworld.io/" />
@@ -17,7 +17,7 @@
 </head>
 <body>
 <header class="nav"><div class="wrap">
-  <a class="brand" href="#top"><img src="assets/favicon.svg" alt="" />skAegis</a>
+  <a class="brand" href="#top"><img src="assets/favicon.svg" alt="" />skaegis</a>
   <nav>
     <a href="#what">What it is</a><a href="#suite">Suite</a><a href="#loop">How it works</a><a href="#features">Features</a><a href="#tiers">Tiers</a><a href="#faq">FAQ</a>
     <a class="keep" href="#tiers">Get started</a>
@@ -28,7 +28,7 @@
 <div class="hero"><div class="wrap">
   <div class="eyebrow">Detect &middot; part of the SKWorld security suite</div>
   <h1>Your continuous shield. <em>Every CVE seen, every gap closed.</em></h1>
-  <p class="lead">skAegis watches every machine you run, Linux servers, Windows laptops and Macs. The moment a new CVE is published against something you have installed, it tells you, ranks it by how exploitable and how exposed it is, and hands the fix to your patch pipeline. On your own infrastructure.</p>
+  <p class="lead">skaegis watches every machine you run, Linux servers, Windows laptops and Macs. The moment a new CVE is published against something you have installed, it tells you, ranks it by how exploitable and how exposed it is, and hands the fix to your patch pipeline. On your own infrastructure.</p>
   <div class="cta"><a class="btn" href="#tiers">See the tiers</a><a class="btn ghost" href="#loop">How the loop works</a></div>
   <p class="status">Status: in design and early build. Tiers and scope below describe the plan, not a shipped release.</p>
 </div></div>
@@ -46,13 +46,13 @@
 
 <section id="suite" class="suite"><div class="wrap">
   <h2>Defend. Detect. Remediate.</h2>
-  <p class="sub">Three products, one story. skAegis is the Detect pillar: it sees the gap. The other two keep attackers out and close the gap once it is seen.</p>
+  <p class="sub">Three products, one story. skaegis is the Detect pillar: it sees the gap. The other two keep attackers out and close the gap once it is seen.</p>
   <div class="grid">
     <div class="card"><div class="tag">Defend</div><h3>sksec</h3><p>Runtime defense at the edge and on the network: intrusion prevention and blocking of hostile traffic.</p></div>
-    <div class="card me"><div class="tag">Detect &middot; you are here</div><h3>skAegis</h3><p>Vulnerability detection and CVE intelligence across every host, ranked by exploitability and exposure.</p></div>
+    <div class="card me"><div class="tag">Detect &middot; you are here</div><h3>skaegis</h3><p>Vulnerability detection and CVE intelligence across every host, ranked by exploitability and exposure.</p></div>
     <div class="card"><div class="tag">Remediate</div><h3>skpatch</h3><p>Patching and remediation: turns a finding into an applied fix and verifies it landed.</p></div>
   </div>
-  <p class="note">The three share one loop. sksec reduces what can reach you, skAegis finds what is weak on your side, skpatch fixes it. You can adopt skAegis on its own.</p>
+  <p class="note">The three share one loop. sksec reduces what can reach you, skaegis finds what is weak on your side, skpatch fixes it. You can adopt skaegis on its own.</p>
 </div></section>
 
 <section id="loop"><div class="wrap">
@@ -62,7 +62,7 @@
     <div class="step"><h3>Detect</h3><p>Agents report installed software on every host. New CVE data is matched against it continuously.</p></div>
     <div class="step"><h3>Triage</h3><p>Findings are ranked by exploitability and exposure, using a model that runs locally, so context stays in-house.</p></div>
     <div class="step"><h3>Remediate</h3><p>The fix goes into your patch pipeline: package updates for hosts, pull requests for dependencies and images.</p></div>
-    <div class="step"><h3>Verify</h3><p>skAegis re-scans. When the CVE no longer appears, the change is closed. If it does, it stays open.</p></div>
+    <div class="step"><h3>Verify</h3><p>skaegis re-scans. When the CVE no longer appears, the change is closed. If it does, it stays open.</p></div>
   </div>
 </div></section>
 
@@ -98,19 +98,19 @@
 
 <section id="faq"><div class="wrap">
   <h2>FAQ</h2><p class="sub"></p>
-  <details><summary>Does any data leave my network?</summary><p>No. skAegis is self-hosted. Host inventory, findings and triage stay on your infrastructure. It pulls public vulnerability feeds in, and sends nothing of yours out.</p></details>
+  <details><summary>Does any data leave my network?</summary><p>No. skaegis is self-hosted. Host inventory, findings and triage stay on your infrastructure. It pulls public vulnerability feeds in, and sends nothing of yours out.</p></details>
   <details><summary>Which operating systems are covered?</summary><p>Linux, Windows and macOS, using a lightweight agent on each host.</p></details>
   <details><summary>Will it fix things automatically?</summary><p>Only at the Guard tier and above, and through your own patch pipeline, so your review and change process still applies. Watch only detects and reports.</p></details>
   <details><summary>Does it find every vulnerability?</summary><p>No tool does. It detects known, published CVEs against software it can see on enrolled hosts. It does not find unknown flaws, and a host without an agent is not covered. It reduces exposure, it does not make a system impossible to breach.</p></details>
   <details><summary>Is it built on open source?</summary><p>Yes. The detection engine is an established open-source platform, run unmodified from pinned images and packaged with SSO, ingress and backups as one product.</p></details>
-  <details><summary>Do I need sksec and skpatch too?</summary><p>No. skAegis stands alone. Together the three cover defend, detect and remediate.</p></details>
+  <details><summary>Do I need sksec and skpatch too?</summary><p>No. skaegis stands alone. Together the three cover defend, detect and remediate.</p></details>
   <details><summary>When can I use it?</summary><p>It is in design and early build. Watch this site and the <a href="https://github.com/smilinTux/skaegis-skworld-io">repository</a> for updates.</p></details>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-  <div><strong>skAegis</strong><br />Your continuous shield.<br />Part of <a href="https://skworld.io">SKWorld</a>.</div>
-  <div>Suite<br /><a href="#suite">Defend (sksec)</a><br /><a href="#suite">Detect (skAegis)</a><br /><a href="#suite">Remediate (skpatch)</a></div>
+  <div><strong>skaegis</strong><br />Your continuous shield.<br />Part of <a href="https://skworld.io">SKWorld</a>.</div>
+  <div>Suite<br /><a href="#suite">Defend (sksec)</a><br /><a href="#suite">Detect (skaegis)</a><br /><a href="#suite">Remediate (skpatch)</a></div>
   <div>Project<br /><a href="https://github.com/smilinTux/skaegis-skworld-io">Site source</a><br /><a href="https://github.com/smilinTux/skaegis-skworld-io/blob/main/SECURITY.md">Security policy</a></div>
   <div>&copy; 2026 SKWorld. MIT licensed site.</div>
 </div></footer>

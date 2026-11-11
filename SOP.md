@@ -1,6 +1,6 @@
 # skaegis-skworld-io: Standard Operating Procedures
 
-Static marketing site for skAegis, published by GitHub Pages at https://skaegis.skworld.io. Edited by hand, no build step.
+Static marketing site for skaegis, published by GitHub Pages at https://skaegis.skworld.io. Edited by hand, no build step.
 
 ## 1. Overview
 Owns the landing page and its assets. Does NOT own product code, pricing decisions, or product docs; the page must match the current product plan and say so where it is only a plan.
