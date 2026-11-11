@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="0%" r="110%">
+      <stop offset="0%" stop-color="#1a1733"/>
+      <stop offset="60%" stop-color="#0d0b1a"/>
+    </radialGradient>
+    <linearGradient id="hl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#7c8cff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="7" fill="#7c8cff"/>
+  <text x="80" y="118" font-family="JetBrains Mono, DejaVu Sans Mono, monospace" font-size="19" letter-spacing="5" fill="#7c8cff">&#128225;  SKAEGIS &#183; DETECT &#183; THE SKWORLD SECURITY SUITE</text>
+  <text x="80" y="250" font-family="DejaVu Sans, sans-serif" font-size="92" font-weight="bold" fill="url(#hl)">skaegis</text>
+  <text x="80" y="336" font-family="DejaVu Sans, sans-serif" font-size="46" font-weight="bold" fill="#eef1f3">Every CVE. Every host. The day it lands.</text>
+  <text x="80" y="398" font-family="DejaVu Sans, sans-serif" font-size="25" fill="#aab0d0">Continuous vulnerability detection across Linux, Windows and macOS,</text>
+  <text x="80" y="432" font-family="DejaVu Sans, sans-serif" font-size="25" fill="#aab0d0">wired straight into your patch loop. Self-hosted, no SaaS.</text>
+  <line x1="80" y1="486" x2="1120" y2="486" stroke="#2a2740" stroke-width="1"/>
+  <text x="80" y="536" font-family="JetBrains Mono, DejaVu Sans Mono, monospace" font-size="18" fill="#8a90b5">defend (sksec)  &#183;  detect (skaegis)  &#183;  remediate (skpatch)</text>
+  <text x="80" y="590" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="bold" fill="#7c8cff">skaegis.skworld.io</text>
+</svg>
