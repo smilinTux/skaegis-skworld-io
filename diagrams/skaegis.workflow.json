@@ -1,0 +1,233 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "skaegis Closed Loop",
+    "subtitle": "detect, triage, route by package kind, remediate, verify, close",
+    "animation": "trace",
+    "visual_preset": "signal-flow",
+    "quality_profile": "showcase",
+    "output": "skaegis.workflow.html"
+  },
+  "lanes": [
+    {
+      "id": "detect",
+      "label": "Detect and verify"
+    },
+    {
+      "id": "image",
+      "label": "Image or dependency"
+    },
+    {
+      "id": "triage",
+      "label": "Triage"
+    },
+    {
+      "id": "linux",
+      "label": "Linux host package"
+    },
+    {
+      "id": "winmac",
+      "label": "Windows or macOS package"
+    }
+  ],
+  "phases": [
+    {
+      "id": "find",
+      "label": "Detect + triage",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "fix",
+      "label": "Remediate",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "prove",
+      "label": "Verify + close",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "detect_cve",
+    "triage_rank",
+    "kind",
+    "image_loop",
+    "rescan",
+    "close_change"
+  ],
+  "nodes": [
+    {
+      "id": "detect_cve",
+      "lane": "detect",
+      "col": 0,
+      "type": "security",
+      "label": "Detect",
+      "sublabel": "CVE on host H, package P",
+      "tag": "skaegis",
+      "width": 150
+    },
+    {
+      "id": "triage_rank",
+      "lane": "triage",
+      "col": 1,
+      "type": "backend",
+      "label": "Triage",
+      "sublabel": "exploitability x exposure, gate policy",
+      "width": 150
+    },
+    {
+      "id": "kind",
+      "lane": "triage",
+      "col": 2,
+      "type": "backend",
+      "label": "Kind of package?",
+      "sublabel": "route by package kind",
+      "width": 150
+    },
+    {
+      "id": "image_loop",
+      "lane": "image",
+      "col": 3,
+      "type": "backend",
+      "label": "Image loop",
+      "sublabel": "Renovate PR, re-scan, CAB merge",
+      "width": 150
+    },
+    {
+      "id": "linux_lane",
+      "lane": "linux",
+      "col": 3,
+      "type": "cloud",
+      "label": "skpatch-hosts",
+      "sublabel": "nightly upgrade or same-day lane",
+      "width": 150
+    },
+    {
+      "id": "winmac_lane",
+      "lane": "winmac",
+      "col": 3,
+      "type": "cloud",
+      "label": "Scheduled OS job",
+      "sublabel": "winget, Windows Update, softwareupdate",
+      "width": 150
+    },
+    {
+      "id": "rescan",
+      "lane": "detect",
+      "col": 4,
+      "type": "backend",
+      "label": "Verify",
+      "sublabel": "skaegis re-scan, health checks green",
+      "width": 150
+    },
+    {
+      "id": "close_change",
+      "lane": "detect",
+      "col": 5,
+      "type": "messagebus",
+      "label": "Close the ITIL change",
+      "sublabel": "CVE gone",
+      "width": 150
+    }
+  ],
+  "edges": [
+    {
+      "id": "detect-triage",
+      "from": "detect_cve",
+      "to": "triage_rank",
+      "variant": "emphasis"
+    },
+    {
+      "id": "triage-kind",
+      "from": "triage_rank",
+      "to": "kind",
+      "variant": "emphasis"
+    },
+    {
+      "id": "kind-image",
+      "from": "kind",
+      "to": "image_loop",
+      "label": "image or dependency",
+      "variant": "emphasis"
+    },
+    {
+      "id": "kind-linux",
+      "from": "kind",
+      "to": "linux_lane",
+      "label": "Linux host package",
+      "variant": "dashed"
+    },
+    {
+      "id": "kind-winmac",
+      "from": "kind",
+      "to": "winmac_lane",
+      "label": "Windows or macOS",
+      "variant": "dashed"
+    },
+    {
+      "id": "image-verify",
+      "from": "image_loop",
+      "to": "rescan",
+      "variant": "emphasis"
+    },
+    {
+      "id": "linux-verify",
+      "from": "linux_lane",
+      "to": "rescan",
+      "variant": "dashed"
+    },
+    {
+      "id": "winmac-verify",
+      "from": "winmac_lane",
+      "to": "rescan",
+      "variant": "dashed"
+    },
+    {
+      "id": "verify-close",
+      "from": "rescan",
+      "to": "close_change",
+      "label": "clean",
+      "variant": "emphasis"
+    },
+    {
+      "id": "verify-redetect",
+      "from": "rescan",
+      "to": "detect_cve",
+      "label": "still present",
+      "variant": "security",
+      "role": "error"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Done means a clean re-scan",
+      "items": [
+        "A finding is closed only when the re-scan shows the CVE gone and health is green",
+        "If it is still present, it goes back to Detect"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Route by package kind",
+      "items": [
+        "Images and dependencies take the pull request loop",
+        "Host packages take the skpatch-hosts lane or a scheduled OS update job"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "The agent drafts, never auto-merges",
+      "items": [
+        "A human or the CAB gate approves every change",
+        "Critical and reachable gets a same-day SLA; everything else batches"
+      ]
+    }
+  ]
+}

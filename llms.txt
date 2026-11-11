@@ -1,0 +1,26 @@
+# skaegis
+
+> Your continuous shield: every CVE seen, every gap closed.
+
+skaegis is a sovereign, self-hosted, cross-OS CVE-detection and closed-loop remediation service. It
+detects known, published vulnerabilities on every Linux, Windows and macOS host you run and hands
+each finding to your existing patch pipeline. It is built on unmodified upstream Wazuh (indexer,
+manager and dashboard) and deployed by the SKStacks role optional/skaegis, with the dashboard behind
+single sign-on. It is a detection and remediation-orchestration service, not a new scanner engine
+and not a SaaS. It does not find zero-days, it does not claim complete coverage, and it does not
+patch by itself: findings go to the patch pipeline (skpatch, Renovate, scheduled OS update jobs),
+the agent drafts and never auto-merges, and a finding closes only when a re-scan shows the CVE gone.
+It is the Detect pillar of a three-part suite: Defend (sksec), Detect (skaegis), Remediate (skpatch).
+Status: design and scaffold phase; nothing here describes a shipped release.
+
+## Links
+
+- [Live site](https://skaegis.skworld.io)
+- [Documentation](https://skaegis.skworld.io/docs.html)
+- [Source code](https://github.com/smilinTux/skaegis)
+
+## About smilinTux
+
+skaegis is part of the **smilinTux sovereign AI ecosystem**, a suite of open-source tools built by
+its creators to give humans and AI agents genuine, authentic infrastructure they can own and
+trust. No corporate clouds, no black-box SaaS middlemen.

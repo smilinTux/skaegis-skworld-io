@@ -5,6 +5,57 @@
 
 This repo is the website only. It contains no product code.
 
+## Component map
+
+```mermaid
+flowchart LR
+  subgraph HOSTS["Monitored hosts"]
+    L["Linux agents"]
+    W["Windows agents"]
+    M["macOS agents"]
+  end
+  FEEDS["Public CVE feeds"]
+  subgraph AEGIS["skaegis (SKStacks optional/skaegis)"]
+    MGR["wazuh-manager"]
+    IDX[("wazuh-indexer")]
+    DASH["wazuh-dashboard"]
+  end
+  L --> MGR
+  W --> MGR
+  M --> MGR
+  FEEDS --> MGR
+  MGR --> IDX --> DASH
+  ADMIN["Admins"] --> TRF["Traefik ingress"] --> DASH
+  DASH -->|OIDC login| SSO["sksso"]
+  MGR -->|findings| LOOP["Remediation pipeline"]
+  MGR -->|alerts| NOTIFY["Notification fan-out"]
+  LOOP -->|fix applied| HOSTS
+```
+
+The interactive version, with motion and a dark/light toggle, is at
+[diagrams/skaegis.architecture.html](diagrams/skaegis.architecture.html) and linked from the live
+site's [Diagrams section](https://skaegis.skworld.io/#diagrams). The topology comes only from the
+mermaid in [smilinTux/skaegis](https://github.com/smilinTux/skaegis).
+
+## Diagrams
+
+All three diagrams are authored as [Archify](https://github.com/tt-a1i/archify) JSON and built to
+standalone, self-contained HTML. CI (`archify`) rebuilds them and fails a pull request if the
+committed HTML is stale.
+
+| Diagram | JSON source | Built HTML |
+|---|---|---|
+| Component map (architecture) | `diagrams/skaegis.architecture.json` | `diagrams/skaegis.architecture.html` |
+| Data flow (agents and feeds to findings, dashboard, pipeline) | `diagrams/skaegis.dataflow.json` | `diagrams/skaegis.dataflow.html` |
+| Closed loop (detect to verified close) | `diagrams/skaegis.workflow.json` | `diagrams/skaegis.workflow.html` |
+
+## Docs viewer
+
+`docs.html` renders `smilinTux/skaegis`'s `docs/*.md` live from the GitHub Contents API, with
+`docs-manifest.json` as a committed offline fallback and a daily self-healing GitHub Action
+(`.github/workflows/refresh-docs-manifest.yml`) to keep it in sync. `llms.txt` gives a plain-text
+summary for language-model crawlers.
+
 ## Quickstart
 ```
 python3 -m http.server 8000   # serve the site locally

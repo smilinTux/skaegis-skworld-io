@@ -1,0 +1,17 @@
+{
+  "repo": "smilinTux/skaegis",
+  "branch": "main",
+  "path": "docs",
+  "generated": "2026-11-11",
+  "note": "Committed fallback for the /docs viewer when the GitHub Contents API is unavailable or rate-limited. Regenerate from: python docs-manifest-gen.py smilinTux/skaegis --out docs-manifest.json",
+  "docs": [
+    {
+      "name": "design.md",
+      "title": "skaegis design"
+    },
+    {
+      "name": "closed-loop.md",
+      "title": "skaegis closed-loop wiring"
+    }
+  ]
+}

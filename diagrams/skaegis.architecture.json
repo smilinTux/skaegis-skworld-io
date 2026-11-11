@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "skaegis Component Map",
+    "subtitle": "Continuous CVE detection on unmodified upstream Wazuh, handed to your patch pipeline",
+    "output": "skaegis.architecture.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "feeds",
+      "type": "external",
+      "label": "Public CVE Feeds",
+      "sublabel": "NVD, GHSA, OSV, vendor",
+      "pos": [
+        320,
+        40
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "linux",
+      "type": "backend",
+      "label": "Linux Agents",
+      "sublabel": "events + inventory",
+      "pos": [
+        40,
+        200
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "windows",
+      "type": "backend",
+      "label": "Windows Agents",
+      "sublabel": "events + inventory",
+      "pos": [
+        40,
+        340
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "macos",
+      "type": "backend",
+      "label": "macOS Agents",
+      "sublabel": "events + inventory",
+      "pos": [
+        40,
+        480
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "manager",
+      "type": "backend",
+      "label": "wazuh-manager",
+      "sublabel": "vuln detector + rules",
+      "pos": [
+        320,
+        340
+      ],
+      "size": [
+        170,
+        64
+      ],
+      "tag": "detects"
+    },
+    {
+      "id": "indexer",
+      "type": "database",
+      "label": "wazuh-indexer",
+      "sublabel": "OpenSearch",
+      "pos": [
+        580,
+        340
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "dashboard",
+      "type": "frontend",
+      "label": "wazuh-dashboard",
+      "sublabel": "web UI",
+      "pos": [
+        840,
+        340
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "traefik",
+      "type": "cloud",
+      "label": "Traefik Ingress",
+      "sublabel": "HTTPS",
+      "pos": [
+        840,
+        200
+      ],
+      "size": [
+        160,
+        64
+      ]
+    },
+    {
+      "id": "admins",
+      "type": "external",
+      "label": "Admins",
+      "sublabel": "group skadmin",
+      "pos": [
+        1100,
+        200
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "sso",
+      "type": "security",
+      "label": "sksso",
+      "sublabel": "OIDC",
+      "pos": [
+        1100,
+        480
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "loop",
+      "type": "backend",
+      "label": "Remediation Pipeline",
+      "sublabel": "skpatch, Renovate, scheduled OS jobs",
+      "pos": [
+        40,
+        620
+      ],
+      "size": [
+        190,
+        64
+      ],
+      "tag": "fixes"
+    },
+    {
+      "id": "notify",
+      "type": "messagebus",
+      "label": "Notification Fan-out",
+      "sublabel": "GTD, ITIL, chat",
+      "pos": [
+        620,
+        620
+      ],
+      "size": [
+        170,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Monitored hosts",
+      "wraps": [
+        "linux",
+        "windows",
+        "macos"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "skaegis (SKStacks optional/skaegis)",
+      "wraps": [
+        "manager",
+        "indexer",
+        "dashboard"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "linux-events",
+      "from": "linux",
+      "to": "manager",
+      "label": "agent events, inventory",
+      "variant": "default"
+    },
+    {
+      "id": "windows-events",
+      "from": "windows",
+      "to": "manager",
+      "label": "agent events, inventory",
+      "variant": "default"
+    },
+    {
+      "id": "macos-events",
+      "from": "macos",
+      "to": "manager",
+      "label": "agent events, inventory",
+      "variant": "default"
+    },
+    {
+      "id": "feeds-content",
+      "from": "feeds",
+      "to": "manager",
+      "label": "vulnerability content",
+      "variant": "default"
+    },
+    {
+      "id": "manager-index",
+      "from": "manager",
+      "to": "indexer",
+      "label": "stores",
+      "variant": "emphasis"
+    },
+    {
+      "id": "index-dash",
+      "from": "indexer",
+      "to": "dashboard",
+      "label": "queries",
+      "variant": "emphasis"
+    },
+    {
+      "id": "admins-https",
+      "from": "admins",
+      "to": "traefik",
+      "label": "HTTPS",
+      "variant": "default"
+    },
+    {
+      "id": "traefik-dash",
+      "from": "traefik",
+      "to": "dashboard",
+      "label": "routes",
+      "variant": "default"
+    },
+    {
+      "id": "dash-sso",
+      "from": "dashboard",
+      "to": "sso",
+      "label": "OIDC login",
+      "variant": "security"
+    },
+    {
+      "id": "manager-loop",
+      "from": "manager",
+      "to": "loop",
+      "label": "findings",
+      "variant": "emphasis"
+    },
+    {
+      "id": "manager-notify",
+      "from": "manager",
+      "to": "notify",
+      "label": "alerts",
+      "variant": "dashed"
+    },
+    {
+      "id": "loop-linux",
+      "from": "loop",
+      "to": "linux",
+      "label": "fix applied",
+      "variant": "dashed"
+    },
+    {
+      "id": "loop-windows",
+      "from": "loop",
+      "to": "windows",
+      "label": "fix applied",
+      "variant": "dashed"
+    },
+    {
+      "id": "loop-macos",
+      "from": "loop",
+      "to": "macos",
+      "label": "fix applied",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Unmodified upstream",
+      "items": [
+        "Wazuh indexer, manager and dashboard run unmodified, pinned by digest",
+        "Detection quality is the upstream vulnerability detector matched against public feeds"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Detect, then hand off",
+      "items": [
+        "skaegis reports known, published CVEs on hosts with an agent",
+        "Findings go to the remediation pipeline; skaegis does not patch by itself"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "SSO-gated dashboard",
+      "items": [
+        "Admins reach the dashboard over HTTPS through the ingress",
+        "Login goes through OIDC against the single sign-on provider"
+      ]
+    }
+  ]
+}

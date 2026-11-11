@@ -19,7 +19,7 @@
 <header class="nav"><div class="wrap">
   <a class="brand" href="#top"><img src="assets/favicon.svg" alt="" />skaegis</a>
   <nav>
-    <a href="#what">What it is</a><a href="#suite">Suite</a><a href="#loop">How it works</a><a href="#features">Features</a><a href="#tiers">Tiers</a><a href="#faq">FAQ</a>
+    <a href="#what">What it is</a><a href="#suite">Suite</a><a href="#loop">How it works</a><a href="#diagrams">Diagrams</a><a href="#features">Features</a><a href="#tiers">Tiers</a><a href="#faq">FAQ</a><a href="/docs.html">Docs</a>
     <a class="keep" href="#tiers">Get started</a>
   </nav>
 </div></header>
@@ -64,6 +64,26 @@
     <div class="step"><h3>Remediate</h3><p>The fix goes into your patch pipeline: package updates for hosts, pull requests for dependencies and images.</p></div>
     <div class="step"><h3>Verify</h3><p>skaegis re-scans. When the CVE no longer appears, the change is closed. If it does, it stays open.</p></div>
   </div>
+</div></section>
+
+<section id="diagrams"><div class="wrap">
+  <h2>Architecture diagrams</h2>
+  <p class="sub">Each diagram is a standalone, self-contained page: explorable, with motion and a dark/light toggle. They open in a new tab. They show the design, not a shipped release.</p>
+  <div class="grid">
+    <figure class="card">
+      <img src="img/diagram-architecture.png" alt="skaegis component map: Linux, Windows and macOS agents feed the manager, which stores findings in the indexer and shows them in the dashboard behind the ingress and single sign-on, and hands findings to the remediation pipeline" loading="lazy" />
+      <figcaption>Component map. <a href="diagrams/skaegis.architecture.html" target="_blank" rel="noopener">Open the interactive version</a></figcaption>
+    </figure>
+    <figure class="card">
+      <img src="img/diagram-dataflow.png" alt="skaegis data flow: agent events and public CVE feeds into the manager, then to the indexer, dashboard, remediation pipeline and notification fan-out" loading="lazy" />
+      <figcaption>Data flow. <a href="diagrams/skaegis.dataflow.html" target="_blank" rel="noopener">Open</a></figcaption>
+    </figure>
+    <figure class="card">
+      <img src="img/diagram-workflow.png" alt="skaegis closed loop: detect, triage, route by package kind, remediate, verify with a re-scan, close the change" loading="lazy" />
+      <figcaption>Closed loop. <a href="diagrams/skaegis.workflow.html" target="_blank" rel="noopener">Open</a></figcaption>
+    </figure>
+  </div>
+  <p class="note">Read the full <a href="/docs.html">design and closed-loop documentation</a>, rendered live from the source repository.</p>
 </div></section>
 
 <section id="features"><div class="wrap">
@@ -111,7 +131,7 @@
 <footer><div class="wrap">
   <div><strong>skaegis</strong><br />Your continuous shield.<br />Part of <a href="https://skworld.io">SKWorld</a>.</div>
   <div>Suite<br /><a href="#suite">Defend (sksec)</a><br /><a href="#suite">Detect (skaegis)</a><br /><a href="#suite">Remediate (skpatch)</a></div>
-  <div>Project<br /><a href="https://github.com/smilinTux/skaegis-skworld-io">Site source</a><br /><a href="https://github.com/smilinTux/skaegis-skworld-io/blob/main/SECURITY.md">Security policy</a></div>
+  <div>Project<br /><a href="/docs.html">Docs</a><br /><a href="https://github.com/smilinTux/skaegis">skaegis source</a><br /><a href="https://github.com/smilinTux/skaegis-skworld-io">Site source</a><br /><a href="https://github.com/smilinTux/skaegis-skworld-io/blob/main/SECURITY.md">Security policy</a></div>
   <div>&copy; 2026 SKWorld. MIT licensed site.</div>
 </div></footer>
 </body>

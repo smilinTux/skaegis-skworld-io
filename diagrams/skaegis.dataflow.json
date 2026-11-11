@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "skaegis Data Flow",
+    "subtitle": "agent inventory and CVE feeds to findings, dashboard and the remediation pipeline",
+    "output": "skaegis.dataflow.html",
+    "viewBox": [
+      1080,
+      600
+    ],
+    "animation": "trace",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "Sources"
+    },
+    {
+      "label": "Detect"
+    },
+    {
+      "label": "Store + hand off"
+    },
+    {
+      "label": "Act"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "linux",
+      "type": "backend",
+      "label": "Linux Agents",
+      "sublabel": "events, inventory",
+      "stage": 0,
+      "row": 0,
+      "tag": "internal"
+    },
+    {
+      "id": "windows",
+      "type": "backend",
+      "label": "Windows Agents",
+      "sublabel": "events, inventory",
+      "stage": 0,
+      "row": 1,
+      "tag": "internal"
+    },
+    {
+      "id": "macos",
+      "type": "backend",
+      "label": "macOS Agents",
+      "sublabel": "events, inventory",
+      "stage": 0,
+      "row": 2,
+      "tag": "internal"
+    },
+    {
+      "id": "feeds",
+      "type": "external",
+      "label": "CVE Feeds",
+      "sublabel": "NVD, GHSA, OSV, vendor",
+      "stage": 1,
+      "row": 0,
+      "width": 150,
+      "tag": "public"
+    },
+    {
+      "id": "manager",
+      "type": "backend",
+      "label": "wazuh-manager",
+      "sublabel": "vuln detector + rules",
+      "stage": 1,
+      "row": 1,
+      "width": 150,
+      "tag": "detects"
+    },
+    {
+      "id": "indexer",
+      "type": "database",
+      "label": "wazuh-indexer",
+      "sublabel": "OpenSearch",
+      "stage": 2,
+      "row": 0,
+      "width": 150,
+      "tag": "findings store"
+    },
+    {
+      "id": "loop",
+      "type": "backend",
+      "label": "Remediation Pipeline",
+      "sublabel": "skpatch, Renovate, OS jobs",
+      "stage": 2,
+      "row": 1,
+      "width": 150,
+      "tag": "hand-off"
+    },
+    {
+      "id": "notify",
+      "type": "messagebus",
+      "label": "Notification Fan-out",
+      "sublabel": "GTD, ITIL, chat",
+      "stage": 2,
+      "row": 2,
+      "width": 150,
+      "tag": "internal"
+    },
+    {
+      "id": "dashboard",
+      "type": "frontend",
+      "label": "wazuh-dashboard",
+      "sublabel": "OIDC login",
+      "stage": 3,
+      "row": 0,
+      "width": 150,
+      "tag": "SSO-gated"
+    },
+    {
+      "id": "fixed",
+      "type": "cloud",
+      "label": "Hosts",
+      "sublabel": "fix applied",
+      "stage": 3,
+      "row": 1,
+      "tag": "re-scan verifies"
+    }
+  ],
+  "flows": [
+    {
+      "id": "linux-manager",
+      "from": "linux",
+      "to": "manager",
+      "label": "events",
+      "classification": "internal",
+      "variant": "default"
+    },
+    {
+      "id": "windows-manager",
+      "from": "windows",
+      "to": "manager",
+      "classification": "internal",
+      "variant": "default",
+      "label": "events"
+    },
+    {
+      "id": "macos-manager",
+      "from": "macos",
+      "to": "manager",
+      "classification": "internal",
+      "variant": "default",
+      "label": "events"
+    },
+    {
+      "id": "feeds-manager",
+      "from": "feeds",
+      "to": "manager",
+      "classification": "public",
+      "variant": "default",
+      "label": "feed data"
+    },
+    {
+      "id": "manager-indexer",
+      "from": "manager",
+      "to": "indexer",
+      "label": "alerts",
+      "classification": "internal",
+      "variant": "emphasis",
+      "labelDy": -30
+    },
+    {
+      "id": "manager-loop",
+      "from": "manager",
+      "to": "loop",
+      "label": "findings",
+      "classification": "internal",
+      "variant": "emphasis"
+    },
+    {
+      "id": "manager-notify",
+      "from": "manager",
+      "to": "notify",
+      "classification": "internal",
+      "variant": "dashed",
+      "label": "alerts",
+      "labelDy": 40
+    },
+    {
+      "id": "indexer-dashboard",
+      "from": "indexer",
+      "to": "dashboard",
+      "label": "queries",
+      "classification": "internal",
+      "variant": "emphasis"
+    },
+    {
+      "id": "loop-fixed",
+      "from": "loop",
+      "to": "fixed",
+      "label": "fix applied",
+      "classification": "internal",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "What flows in",
+      "items": [
+        "Agents send events and package inventory; public feeds send vulnerability content",
+        "Nothing of yours is sent out; only public feeds are pulled in"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "What comes out",
+      "items": [
+        "Findings land in the indexer and the SSO-gated dashboard",
+        "The same findings go to the remediation pipeline and the notification fan-out"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Honest limits",
+      "items": [
+        "Covers known, published CVEs on hosts that run an agent",
+        "A clean dashboard is not proof of a secure host"
+      ]
+    }
+  ]
+}

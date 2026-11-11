@@ -52,3 +52,6 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-s
 footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
 footer a{color:var(--muted)}footer a:hover{color:var(--text)}
 @media(max-width:640px){.nav nav a:not(.keep){display:none}.hero{padding:64px 0 48px}section{padding:52px 0}}
+figure.card{margin:0}
+figure.card img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block}
+figure.card figcaption{margin-top:12px;color:var(--muted);font-size:.92rem}
